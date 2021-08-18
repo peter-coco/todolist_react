@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GlobalState, Todolists } from "../redux/reducer";
 import styled from "styled-components";
+import Actions from "../redux/actions";
 
 const FooterWrap = styled.div`
   width: 479px;
@@ -35,6 +36,7 @@ const FooterAddItem = styled.div`
 `;
 
 const Footer = () => {
+  const dispatch = useDispatch();
   const [inputText, setInputText] = useState("");
   const [todolists] = useSelector<GlobalState, [Todolists[]]>((state) => [
     state.todolists,
@@ -44,11 +46,27 @@ const Footer = () => {
 
   const setInputTextFunc = (e: any) => {
     setInputText(e.target.value);
+    dispatch({
+      type: Actions.SET_INPUT_VALUE,
+      payload: { inputText: e.target.value },
+    });
   };
 
-  const addINputText2ListsFunc = (e: any) => {};
-
-  const dispatch = useDispatch;
+  const addINputText2ListsFunc = (e: any) => {
+    if (e.key == "Enter") {
+      const payloadContents = {
+        id: String(nextId.current),
+        name: inputText,
+        isChecked: false,
+      };
+      dispatch({
+        type: Actions.ADD_VALUE_TO_TODOLISTS,
+        payload: { todolist: payloadContents },
+      });
+      nextId.current += 1;
+      // console.log(todolists, nextId.current);
+    }
+  };
 
   return (
     <FooterWrap>

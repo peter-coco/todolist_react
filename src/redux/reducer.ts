@@ -1,9 +1,9 @@
 import Actions from "./actions";
 
 export interface Todolists {
-  id: number;
+  id: string;
   name: string;
-  isCheked: boolean;
+  isChecked: boolean;
 }
 
 export interface GlobalState {
@@ -26,6 +26,11 @@ function reducer(
       return {
         ...state,
         inputText: action.payload.inpuText,
+      };
+    case Actions.ADD_VALUE_TO_TODOLISTS:
+      return {
+        ...state,
+        todolists: [...state.todolists, action.payload.todolist],
       };
   }
   return state;
