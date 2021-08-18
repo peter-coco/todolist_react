@@ -55,7 +55,7 @@ const Footer = () => {
   const addINputText2ListsFunc = (e: any) => {
     if (e.key == "Enter") {
       const payloadContents = {
-        id: String(nextId.current),
+        id: nextId.current,
         name: inputText,
         isChecked: false,
       };

@@ -1,6 +1,8 @@
 enum Actions {
   SET_INPUT_VALUE,
   ADD_VALUE_TO_TODOLISTS,
+  SUB_VALUE_FROM_TODOLISTS,
+  TOGGLE_CHECKED_BTN_FROM_TODOLISTS,
 }
 
 export default Actions;

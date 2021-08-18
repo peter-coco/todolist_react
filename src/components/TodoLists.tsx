@@ -19,11 +19,15 @@ const TodoLists = () => {
     state.todolists,
   ]);
 
+  // useEffect(() => {
+  //   console.log("HI22");
+  // }, [todolists]);
+
   // console.log(todolists);
   return (
     <TodoListsWrap>
       {todolists.map((e) => (
-        <TodoList key={e.id} list={e} />
+        <TodoList key={e.id} list={e} isChecked={e.isChecked} />
       ))}
     </TodoListsWrap>
   );

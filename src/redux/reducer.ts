@@ -1,7 +1,7 @@
 import Actions from "./actions";
 
 export interface Todolists {
-  id: string;
+  id: number;
   name: string;
   isChecked: boolean;
 }
@@ -31,6 +31,23 @@ function reducer(
       return {
         ...state,
         todolists: [...state.todolists, action.payload.todolist],
+      };
+
+    case Actions.SUB_VALUE_FROM_TODOLISTS:
+      return {
+        ...state,
+        todolists: state.todolists.filter((e) => e.id !== action.payload.id),
+      };
+
+    case Actions.TOGGLE_CHECKED_BTN_FROM_TODOLISTS:
+      return {
+        ...state,
+        todolists: state.todolists.map((e) => {
+          if (e.id === action.payload.id) {
+            e.isChecked = !e.isChecked;
+          }
+          return e;
+        }),
       };
   }
   return state;
